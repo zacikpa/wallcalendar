@@ -682,17 +682,17 @@ center of its glyph box (i.e. not at the center of the character x):
 \newcommand\FullMoon{}
 \newcommand\LastQuarter{}
 
-\newcommand\@wall@NewMoon{%
+\newcommand\@wall@FullMoon{%
 \raisebox{\@wall@moonRaise}{%
   \tikz\node[moon circle, fill=mooncolor] {};%
 }}
 
-\newcommand\@wall@FullMoon{%
+\newcommand\@wall@NewMoon{%
 \raisebox{\@wall@moonRaise}{%
   \tikz\node[moon circle, draw, mooncolor, line width=0.3pt] {};%
 }}
 
-\newcommand\@wall@FirstQuarter{%
+\newcommand\@wall@LastQuarter{%
 \raisebox{\@wall@moonRaise}{%
 \begin{tikzpicture}
 \node [moon circle, name=waxing] {};
@@ -704,7 +704,7 @@ center of its glyph box (i.e. not at the center of the character x):
 \end{tikzpicture}%
 }}
 
-\newcommand\@wall@LastQuarter{%
+\newcommand\@wall@FirstQuarter{%
 \raisebox{\@wall@moonRaise}{%
 \begin{tikzpicture}
 \node [moon circle, name=waning] {};

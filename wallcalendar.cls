@@ -93,6 +93,86 @@
   prevPaper/.style = {paperWidth = 170mm, paperHeight = 250mm},% r = 1.4705
 }
 
+\pgfkeys{/pgf/calendar/Holiday/.code=%
+{
+  \ifnum\pgfcalendarifdatemonth=1\relax
+    \ifnum\pgfcalendarifdateday=1\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=1\relax
+    \ifnum\pgfcalendarifdateday=6\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=4\relax
+    \ifnum\pgfcalendarifdateday=18\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=4\relax
+    \ifnum\pgfcalendarifdateday=21\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=5\relax
+    \ifnum\pgfcalendarifdateday=1\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=5\relax
+    \ifnum\pgfcalendarifdateday=8\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=7\relax
+    \ifnum\pgfcalendarifdateday=5\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=8relax
+    \ifnum\pgfcalendarifdateday=29\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=9\relax
+    \ifnum\pgfcalendarifdateday=1\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=9\relax
+    \ifnum\pgfcalendarifdateday=15\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=11\relax
+    \ifnum\pgfcalendarifdateday=1\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=11\relax
+    \ifnum\pgfcalendarifdateday=17\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=12\relax
+    \ifnum\pgfcalendarifdateday=24\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+  \ifnum\pgfcalendarifdatemonth=12\relax
+    \ifnum\pgfcalendarifdateday=25\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \
+  \ifnum\pgfcalendarifdatemonth=12\relax
+    \ifnum\pgfcalendarifdateday=26\relax
+      \pgfcalendarmatchestrue
+    \fi
+  \fi
+}}
+
+
 % Debug with: \wlog{YEA: \the\@wall@bottomMargin}
 
 \DeclareOption*{%
@@ -572,17 +652,17 @@
 \newcommand\FullMoon{}
 \newcommand\LastQuarter{}
 
-\newcommand\@wall@NewMoon{%
+\newcommand\@wall@FullMoon{%
 \raisebox{\@wall@moonRaise}{%
   \tikz\node[moon circle, fill=mooncolor] {};%
 }}
 
-\newcommand\@wall@FullMoon{%
+\newcommand\@wall@NewMoon{%
 \raisebox{\@wall@moonRaise}{%
   \tikz\node[moon circle, draw, mooncolor, line width=0.3pt] {};%
 }}
 
-\newcommand\@wall@FirstQuarter{%
+\newcommand\@wall@LastQuarter{%
 \raisebox{\@wall@moonRaise}{%
 \begin{tikzpicture}
 \node [moon circle, name=waxing] {};
@@ -594,7 +674,7 @@
 \end{tikzpicture}%
 }}
 
-\newcommand\@wall@LastQuarter{%
+\newcommand\@wall@FirstQuarter{%
 \raisebox{\@wall@moonRaise}{%
 \begin{tikzpicture}
 \node [moon circle, name=waning] {};
@@ -1832,7 +1912,7 @@ monthInlineNotes(\luastring{\theMonthName}, nil, \luastring{\@wall@eventsCsv}, \
   day heading/.style={black!90, yshift={-0.3\@t@calendar@dayYshift}},
   every day/.append style={anchor=base, inner xsep=0pt, yshift={-0.25\baselineskip}},
   execute at begin day scope={
-    \ifdate{Sunday}{\def\dayLetterColor{\color{sunday}}}{\def\dayLetterColor{\color{weekday}}}%
+    \ifdate{Sunday,Holiday}{\def\dayLetterColor{\color{sunday}}}{\def\dayLetterColor{\color{weekday}}}%
   },
   day text={\dayTextFmt\dayLetterColor\%d-},
   day code={%
@@ -2421,34 +2501,33 @@ yearMarksNote(tonumber(\CalendarYear), nil, \luastring{\plannerMarksNoteCSV}, \l
 % #1 : image path
 % #3 : background overlay height
 % #3 : title text
-\newcommand{\TitlePage}[3]{%
+% #4 : vertical offset above center
+\newcommand{\TitlePage}[4]{%
 \mbox{}
 \thispagestyle{empty}
 
 \AddToShipoutPictureFG*{%
-  \put(\LenToUnit{-3mm},\LenToUnit{-3mm}){%
+  \put(\LenToUnit{-4mm},\LenToUnit{-3mm}){%
     \begin{tikzpicture}
       \node (bg) [
-        minimum width=\calPaperWidth + 6mm,
-        minimum height=\calPaperHeight + 6mm,
       ] {%
-        \includegraphics[height={\calPaperHeight + 6mm}]{#1}%
+        \includegraphics[keepaspectratio, width=\calPaperWidth + 2\@t@bleed]{#1}%
       };
 
       \node (title-bg) [
-        minimum width=\calPaperWidth + 6mm,
+        minimum width=\calPaperWidth + 2\@t@bleed,
         minimum height=#2,
-        above left=0pt and 0pt of bg.center,
+        above left=#4 and 0pt of bg.center,
         anchor=center,
         fill=white,
         opacity=0.4,
       ] {};
 
       \node (title-text) [
-        above left=0pt and 0pt of bg.center,
+        above left=#4 and 0pt of bg.center,
         anchor=center,
       ] {%
-        \begin{minipage}{\calPaperWidth + 6mm}%
+        \begin{minipage}{\calPaperWidth + 2\@t@bleed}%
           \centering
           #3%
           \par

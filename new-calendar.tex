@@ -1,0 +1,192 @@
+\documentclass[
+  year = 2025,
+  language = slovakian,
+  eventsCsv = ./data/holidays.csv,
+  markDefaultsCsv = ./data/mark_defaults.csv,
+  imageFolder = ./simon/,
+  paperWidth = 297mm,
+  paperHeight = 210mm,
+  trimSpace = 15mm,
+  topMargin = 15mm,
+  showtrims
+]{wallcalendar}
+
+% |           | Width    | Height   | Width    | Height  |   Aspect |
+% |-----------+----------+----------+----------+---------+----------|
+% | A4        | 297.0 mm | 210.0 mm | 11.69 in | 8.27 in | 1:1.4142 |
+% | US Letter | 279.4 mm | 215.9 mm | 11.0 in  | 8.5 in  | 1:1.2941 |
+% | US Legal  | 355.6 mm | 215.9 mm | 14.0 in  | 8.5 In  | 1:1.6470 |
+
+\makeatletter
+
+\colorlet{mooncolor}{darkgold}
+
+% === Custom fonts =====================================================
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures={TeX}}
+
+\setmainfont{TeX Gyre Pagella}
+
+\newfontfamily\dejaVuSans{DejaVu Sans}
+
+\newfontfamily\josefinSans[Path = {./fonts/}]{JosefinSans-Regular.ttf}
+
+% === Renew formatting hooks ===========================================
+
+\renewcommand*\dayLetterTextFmt[1]{#1}
+
+\renewcommand\photoAndNotesFmt{%
+  \renewcommand*\monthFmt{\josefinSans\LARGE}%
+  \renewcommand*\yearFmt{\josefinSans\LARGE}%
+  \renewcommand*\dayLetterColor{}%
+  \renewcommand*\dayLetterFmt{\small}%
+  \renewcommand*\dayLetterTextFmt[1]{\josefinSans\small\textls*{\MakeUppercase{##1}}}%
+  \renewcommand*\dayTextFmt{\josefinSans\small}%
+  \renewcommand*\quoteFmt{\centering}%
+  \renewcommand*\headingFmt{\centering}%
+  \renewcommand*\calendarFmt{\centering}%
+  \renewcommand*\eventsFmt{\setlength{\parindent}{0pt}\raggedright\josefinSans\scriptsize\selectfont}%
+  \setlength{\@t@calendar@minimumHeight}{\calPaperHeight - 30mm}%
+  \setlength{\@t@calendar@hmargin}{20pt}%
+  % white space to allow:
+  % - month and year label
+  % - notepad area
+  % - extra white space
+  \setlength{\@t@calendar@verticalSpacing}{30mm}%
+  %
+  % Optionally, disable the notepad area, and then the calendar can be taller.
+  % Test the calendar size on a month with six rows.
+  %
+  \renewcommand\notepadContent{}%
+  \setlength{\@t@calendar@minimumHeight}{\calPaperHeight - 20mm}%
+}
+
+\SetPhoto[bleed=3mm, file={1.jpg}]{January}
+\SetCalendar[]{January}
+\SetEvents{January}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={2}]{February}
+\SetCalendar[]{February}
+\SetEvents{February}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%  % bez Radomira 29.2
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={3}]{March}
+\SetCalendar[]{March}
+\SetEvents{March}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={4}]{April}
+\SetCalendar[]{April}
+\SetEvents{April}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={5}]{May}
+\SetCalendar[]{May}
+\SetEvents{May}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={6}]{June}
+\SetCalendar[]{June}
+\SetEvents{June}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={7}]{July}
+\SetCalendar[]{July}
+\SetEvents{July}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={8}]{August}
+\SetCalendar[]{August}
+\SetEvents{August}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={9}]{September}
+\SetCalendar[]{September}
+\SetEvents{September}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={10}]{October}
+\SetCalendar[]{October}
+\SetEvents{October}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={11}]{November}
+\SetCalendar[]{November}
+\SetEvents{November}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\SetPhoto[bleed=3mm, file={12}]{December}
+\SetCalendar[]{December}
+\SetEvents{December}{%
+\semicolonEndTikzCalendar%
+\parseMonthMarksDayTextInlineUsing{./data/names_new.csv}%
+\parseMonthMarksDayTextInlineUsing{./data/moonphases-2025.csv}%
+\parseMonthInlineNotes%
+}{}
+
+\makeatother
+
+\begin{document}
+
+\TitlePage{0}{50}{\josefinSans\Huge{Kalendár \CalendarYear}}{210pt}
+
+\MonthPage[layout=photo and notes, put photo=full page]{January}
+\MonthPage[layout=photo and notes, put photo=full page]{February}
+\MonthPage[layout=photo and notes, put photo=full page]{March}
+\MonthPage[layout=photo and notes, put photo=full page]{April}
+\MonthPage[layout=photo and notes, put photo=full page]{May}
+\MonthPage[layout=photo and notes, put photo=full page]{June}
+\MonthPage[layout=photo and notes, put photo=full page]{July}
+\MonthPage[layout=photo and notes, put photo=full page]{August}
+\MonthPage[layout=photo and notes, put photo=full page]{September}
+\MonthPage[layout=photo and notes, put photo=full page]{October}
+\MonthPage[layout=photo and notes, put photo=full page]{November}
+\MonthPage[layout=photo and notes, put photo=full page]{December}
+
+\end{document}
