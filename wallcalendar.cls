@@ -106,12 +106,12 @@
     \fi
   \fi
   \ifnum\pgfcalendarifdatemonth=4\relax
-    \ifnum\pgfcalendarifdateday=18\relax
+    \ifnum\pgfcalendarifdateday=3\relax
       \pgfcalendarmatchestrue
     \fi
   \fi
   \ifnum\pgfcalendarifdatemonth=4\relax
-    \ifnum\pgfcalendarifdateday=21\relax
+    \ifnum\pgfcalendarifdateday=6\relax
       \pgfcalendarmatchestrue
     \fi
   \fi
