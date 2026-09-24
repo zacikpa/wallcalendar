@@ -100,11 +100,6 @@
       \pgfcalendarmatchestrue
     \fi
   \fi
-  \ifnum\pgfcalendarifdatemonth=1\relax
-    \ifnum\pgfcalendarifdateday=6\relax
-      \pgfcalendarmatchestrue
-    \fi
-  \fi
   \ifnum\pgfcalendarifdatemonth=4\relax
     \ifnum\pgfcalendarifdateday=3\relax
       \pgfcalendarmatchestrue
@@ -130,23 +125,13 @@
       \pgfcalendarmatchestrue
     \fi
   \fi
-  \ifnum\pgfcalendarifdatemonth=8relax
-    \ifnum\pgfcalendarifdateday=29\relax
+  \ifnum\pgfcalendarifdatemonth=7\relax
+    \ifnum\pgfcalendarifdateday=6\relax
       \pgfcalendarmatchestrue
     \fi
   \fi
-  \ifnum\pgfcalendarifdatemonth=9\relax
-    \ifnum\pgfcalendarifdateday=1\relax
-      \pgfcalendarmatchestrue
-    \fi
-  \fi
-  \ifnum\pgfcalendarifdatemonth=9\relax
-    \ifnum\pgfcalendarifdateday=15\relax
-      \pgfcalendarmatchestrue
-    \fi
-  \fi
-  \ifnum\pgfcalendarifdatemonth=11\relax
-    \ifnum\pgfcalendarifdateday=1\relax
+  \ifnum\pgfcalendarifdatemonth=10\relax
+    \ifnum\pgfcalendarifdateday=28\relax
       \pgfcalendarmatchestrue
     \fi
   \fi
@@ -1912,7 +1897,7 @@ monthInlineNotes(\luastring{\theMonthName}, nil, \luastring{\@wall@eventsCsv}, \
   day heading/.style={black!90, yshift={-0.3\@t@calendar@dayYshift}},
   every day/.append style={anchor=base, inner xsep=0pt, yshift={-0.25\baselineskip}},
   execute at begin day scope={
-    \ifdate{Sunday,Holiday}{\def\dayLetterColor{\color{sunday}}}{\def\dayLetterColor{\color{weekday}}}%
+    \ifdate{Saturday,Sunday,Holiday}{\def\dayLetterColor{\color{sunday}}}{\def\dayLetterColor{\color{weekday}}}%
   },
   day text={\dayTextFmt\dayLetterColor\%d-},
   day code={%
